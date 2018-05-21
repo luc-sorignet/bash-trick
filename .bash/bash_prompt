@@ -1,0 +1,4 @@
+
+#terminal color
+export PS1="\[$(tput bold)\]\[\033[38;5;11m\]\u@\h\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;15m\]:[\[$(tput sgr0)\]\[\033[38;5;10m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\]]\[$(tput sgr0)\]\[\033[38;5;248m\]\\$\[$(tput sgr0)\]\[\033[38;5;15m\]>\[$(tput sgr0)\]"
+
