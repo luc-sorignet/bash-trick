@@ -49,12 +49,16 @@
 
 ## Git Alias
 
-undo : git reset --soft HEAD^
-amend : commit --amend
-changes : diff --name-status
-dic : diff --cached
-diffstat : diff --stat
+`undo` : git reset --soft HEAD^
 
-oneline : log --pretty=oneline --abbrev-commit --graph --decorate
+`amend` : commit --amend
 
-checkb : checkout -b
+`changes` : diff --name-status
+
+`dic` : diff --cached
+
+`diffstat` : diff --stat
+
+`oneline` : log --pretty=oneline --abbrev-commit --graph --decorate
+
+`checkb` : checkout -b
