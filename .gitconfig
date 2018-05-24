@@ -1,0 +1,13 @@
+[user]
+	email = luc.sorignet@engie.com
+	name = Luc SORIGNET
+[alias]
+    undo = git reset --soft HEAD^
+    amend = commit --amend
+    changes = diff --name-status
+    dic = diff --cached
+    diffstat = diff --stat
+    oneline = log --pretty=oneline --abbrev-commit --graph --decorate
+    checkb = checkout -b
+[color]
+	ui = auto

@@ -1,30 +1,51 @@
 
 #Platform detector
-unamestr=`uname`
-if [[ "$unamestr" == 'Linux' ]]; then
+PLATFORM=`uname`
+if [ "$PLATFORM" == 'Linux' ]; then
    # enable color support of ls and also add handy aliases
 	if [ -x /usr/bin/dircolors ]; then
 	    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-	    alias ls='ls --color=auto'
+	    alias ls="ls --color=auto"
 	    #alias dir='dir --color=auto'
 	    #alias vdir='vdir --color=auto'
-	    alias grep='grep --color=auto'
-	    alias fgrep='fgrep --color=auto'
-	    alias egrep='egrep --color=auto'
+	    alias grep="grep --color=auto"
+	    alias fgrep="fgrep --color=auto"
+	    alias egrep="egrep --color=auto"
 	fi
 else
 	#UNIX
-	alias ls='ls -CFG'
-	alias grep='grep -G'
-	alias fgrep='fgrep -G'
-	alias egrep='egrep -G'
+	alias ls="ls -CFG"
+	alias grep="grep -G"
+	alias fgrep="fgrep -G"
+	alias egrep="egrep -G"
 fi
+
+export DEV_DIR="~/Documents/dev/"
+export QI_TOOLCHAIN="~/.local/share/qi/toolchains/"
+
 
 
 alias l="ls"
 alias ll="ls -l"
 alias la="ls -al"
 
-alias clrhistory="rm ~/.bash_history; history -c ; clear;"
-alias bashrcvi="vi ~/.bashrc; source ~/.bashrc"
+alias clrhist="rm ~/.bash_history; history -c ; clear;"
+alias vibashrc="vi ~/.bashrc; source ~/.bashrc"
 
+
+alias dev="cd $DEV_DIR"
+alias cdqitool="cd $QI_TOOLCHAIN"
+alias cd..="cd .."
+alias ..="cd .."
+
+#qi build shortcut
+alias qib="qibuild"
+alias qibc="qibuild configure"
+alias qibm="qibuild make"
+alias qibi="qibuild install"
+alias qitc="qitoolchain"
+alias qitcc="qitoolchain create"
+
+#squish tool
+alias sqrun="squishrunner"
+alias sqruntc="squishrunner --testcase"
