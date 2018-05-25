@@ -19,5 +19,5 @@ if [[ -x "$(command -v git)" ]]; then
 	cp $DIR/.gitconfig ~/
 	cp $DIR/.gitmessage ~/
 fi
-
+vim +PluginInstall +qall
 echo "install sucessfull you can restart your terminal !"

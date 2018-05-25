@@ -1,4 +1,6 @@
 # BASH TRICKS :lemon: 
+**Installation**
+`git clone --recurse-submodules https://github.com/luc-sorignet/bash-trick.git; cd bash-trick ; ./install.sh ; cd ..`
 
 **Bash Navigation**
 
