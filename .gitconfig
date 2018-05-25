@@ -9,5 +9,9 @@
     diffstat = diff --stat
     oneline = log --pretty=oneline --abbrev-commit --graph --decorate
     checkb = checkout -b
+    vi = !vi $(git-ls-files -m -z)
+    viall = !vi $(git-ls-files -m -o --exclude-standard -z)
 [color]
 	ui = auto
+[commit]
+	template = ~/.gitmessage
