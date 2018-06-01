@@ -1,5 +1,6 @@
 #!/bin/bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DOTFILE_DIR=$DIR/dotfiles
 cp -r $DIR/bash/.bash ~/
 cp $DIR/bash/.bashrc ~/ 
 
@@ -12,12 +13,12 @@ if [[ -x "$(command -v zsh)" ]]; then
    
 fi
 
-cp -r $DIR/.vim ~/
-cp $DIR/.vimrc ~/.vimrc
+cp -r $DOTFILE_DIR/.vim ~/
+cp $DOTFILE_DIR/.vimrc ~/.vimrc
 
 if [[ -x "$(command -v git)" ]]; then
-	cp $DIR/.gitconfig ~/
-	cp $DIR/.gitmessage ~/
+	cp $DOTFILE_DIR/.gitconfig ~/
+	cp $DOTFILE_DIR/.gitmessage ~/
 fi
 vim +PluginInstall +qall
 echo "install sucessfull you can restart your terminal !"
