@@ -1,6 +1,8 @@
 [user]
-	email = luc.sorignet@engie.com
-	name = Luc SORIGNET
+    email = luc.sorignet@gmail.com
+    name = Luc SORIGNET
+[core]
+    editor = vi
 [alias]
     undo = git reset --soft HEAD^
     amend = commit --amend
@@ -8,10 +10,17 @@
     dic = diff --cached
     diffstat = diff --stat
     oneline = log --pretty=oneline --abbrev-commit --graph --decorate
-    checkb = checkout -b
-    vi = !vi $(git-ls-files -m -z)
-    viall = !vi $(git-ls-files -m -o --exclude-standard -z)
+    chb = checkout -b
+    ch = checkout
+    b = branch
+    a = add
+    d = rm
+    who = blame
+    tree = log --graph
+    unstage = reset HEAD --
+    last = log -1 HEAD
+    lc = !git oneline ORIG_HEAD.. --stat --no-merges
 [color]
-	ui = auto
+    ui = auto
 [commit]
-	template = ~/.gitmessage
+    template = ~/.gitmessage
