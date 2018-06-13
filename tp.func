@@ -1,0 +1,62 @@
+#!/bin/bash
+export WPFILE="$HOME/.tpwp"
+
+function tp-list(){
+if [ -f $WPFILE ]; then
+    divider="=============================="
+    header="\n %-10s | %8s\n"
+    format=" %-10s | %8s\n"
+    width=38
+
+    printf "$header" "WAYPOINTS" "PATH"
+    printf "%-10s\n" "$divider"
+    cat $WPFILE | while read key value; do
+        printf "$format" $key $value
+    done
+else
+    echo "No waypoint saved! try to register a waypoint with tp-add command"
+fi
+
+    echo ""
+}
+
+function tp(){
+
+    if [ -f $WPFILE ]; then
+        cat $WPFILE | while read key value; do
+             if [[ $key = $1 ]]; then
+                 echo "go to $key $value"
+                 cd $value
+                return 0
+             fi
+        done
+    fi
+
+    echo "tp should have a registered waypoint |$1| try to add it with:"
+    echo "tp-add $1"
+}
+
+function tp-add(){
+     tp-rm $1
+     echo "$1 `pwd`">>$WPFILE
+}
+
+function tp-rm(){
+
+ if [ -f $WPFILE ]; then
+     mv $WPFILE $WPFILE.bak
+        cat $WPFILE.bak | while read key value; do
+        line="$key $value"
+        if [ "$key" != "$1" ]; then
+                echo "$line" >> $WPFILE
+             fi
+        done
+     rm $WPFILE.bak
+    fi
+}
+
+function tp-clear(){
+    rm $WPFILE
+}
+
+
