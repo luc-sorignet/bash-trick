@@ -115,5 +115,5 @@ fi
 if [ -f $BASH_DIR/bash_aliases ]; then
     . $BASH_DIR/bash_aliases
 fi
-
+export FPATH=~/.sh_func:$FPATH
 PS1="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[yellow]%}%~ %{$reset_color%}%% "
