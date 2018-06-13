@@ -20,9 +20,12 @@ else
 	alias egrep="egrep -G"
 fi
 
-export DEV_DIR="~/Documents/dev/"
-export QI_TOOLCHAIN="~/.local/share/qi/toolchains/"
+export DEV_DIR="$HOME/Documents/dev/"
+export QI_TOOLCHAIN="$HOME/.local/share/qi/toolchains/"
 
+function cdp (){
+   cd "$DEV_DIR$1"
+}
 
 
 alias l="ls"
@@ -33,7 +36,6 @@ alias clrhist="rm ~/.bash_history; history -c ; clear;"
 alias vibashrc="vi ~/.bashrc; source ~/.bashrc"
 
 
-alias dev="cd $DEV_DIR"
 alias cdqitool="cd $QI_TOOLCHAIN"
 alias cd..="cd .."
 alias ..="cd .."
