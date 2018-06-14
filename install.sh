@@ -1,7 +1,7 @@
 #!/bin/bash
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DOTFILE_DIR=$DIR/dotfiles
-cp -r $DIR/shell-conf/. ~/.shell-conf
+cp -r $DIR/shell-conf/. ~/.bash-trick
 cp $DOTFILE_DIR/bash/.bashrc ~/
 
 

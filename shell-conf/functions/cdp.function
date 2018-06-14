@@ -1,5 +1,18 @@
 export DEV_DIR="$HOME/Documents/dev/"
+if [ ! -d $DEV_DIR ]; then
+    mkdir -p $DEV_DIR
+fi
 function cdp (){
-   cd "$DEV_DIR$1"
+  PROJECT=$DEV_DIR
+  if [ ! -z "$1" ]; then
+    PROJECT=$PROJECT$1
+  fi
+  if [ -d $PROJECT ]; then
+     cd $PROJECT
+  else
+    >&2 echo "$0 no such project dir $PROJECT"
+    return 1
+  fi
+  return 0
 }
 
