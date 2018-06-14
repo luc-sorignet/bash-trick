@@ -1,0 +1,11 @@
+export QI_TOOLCHAIN="$HOME/.local/share/qi/toolchains/"
+alias cdqitool="cd $QI_TOOLCHAIN"
+#qi build shortcut
+alias qib="qibuild"
+alias qibc="qibuild configure"
+alias qibm="qibuild make"
+alias qibi="qibuild install"
+alias qitc="qitoolchain"
+alias qitcc="qitoolchain create"
+
+

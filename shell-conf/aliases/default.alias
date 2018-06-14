@@ -20,14 +20,6 @@ else
 	alias egrep="egrep -G"
 fi
 
-export DEV_DIR="$HOME/Documents/dev/"
-export QI_TOOLCHAIN="$HOME/.local/share/qi/toolchains/"
-
-function cdp (){
-   cd "$DEV_DIR$1"
-}
-
-
 alias l="ls"
 alias ll="ls -l"
 alias la="ls -al"
@@ -36,18 +28,5 @@ alias clrhist="rm ~/.bash_history; history -c ; clear;"
 alias vibashrc="vi ~/.bashrc; source ~/.bashrc"
 
 
-alias cdqitool="cd $QI_TOOLCHAIN"
 alias cd..="cd .."
 alias ..="cd .."
-
-#qi build shortcut
-alias qib="qibuild"
-alias qibc="qibuild configure"
-alias qibm="qibuild make"
-alias qibi="qibuild install"
-alias qitc="qitoolchain"
-alias qitcc="qitoolchain create"
-
-#squish tool
-alias sqrun="squishrunner"
-alias sqruntc="squishrunner --testcase"

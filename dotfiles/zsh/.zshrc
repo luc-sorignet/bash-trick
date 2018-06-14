@@ -66,21 +66,17 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# loading bash aliases if exist
-if [ -f .bash/bash_aliases ]; then
-    . .bash/bash_aliases
-fi
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=fr_FR.UTF-8
+ export LANG=fr_FR.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='vim'
+ else
+   export EDITOR='mvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -96,24 +92,42 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+export BASH_DIR="$HOME/.shell-conf"
+export USR_BIN="$HOME/bin"
 
-BASH_DIR="$HOME/.bash"
-USER_SCRIPT="$HOME/scripts"
+function reload_cnf() {
+      if [ -d $BASH_DIR ]; then
+        if [ -d $BASH_DIR/aliases ]; then
+             for f in $BASH_DIR/aliases/*.alias ; do
+                 # loading aliases if exist
+                 if [ -f $f ]; then
+                    . $f
+                 fi
+             done
+        fi
+        if [ -d $BASH_DIR/functions ]; then
+            for f in $BASH_DIR/functions/*.function ; do
+                # loading function if exist
+                if [ -f $f ]; then
+                    . $f
+                fi
+            done
+        fi
+         if [ -d $BASH_DIR/config ]; then
+            for f in $BASH_DIR/config/*.conf ; do
+                # loading conf if exist
+                if [ -f $f ]; then
+                   . $f
+                fi
+            done
+        fi
 
-if [ ! -d $BASH_DIR ]; then
-	mkdir -p $BASH_DIR
+    fi
+}
+reload_cnf
+if [ -d $USR_BIN ]; then
+    export PATH="$PATH:$USR_BIN"
 fi
+export FPATH=$BASH_DIR/fzsh:$FPATH
 
-if [ -d $USER_SCRIPT ]; then
-    export PATH="$PATH:$USER_SCRIPT"
-else
-	mkdir -p $USER_SCRIPT
-	export PATH="$PATH:$USER_SCRIPT"
-fi
-
-# loading bash aliases if exist
-if [ -f $BASH_DIR/bash_aliases ]; then
-    . $BASH_DIR/bash_aliases
-fi
-export FPATH=~/.sh_func:$FPATH
 PS1="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[yellow]%}%~ %{$reset_color%}%% "

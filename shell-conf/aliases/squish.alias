@@ -1,0 +1,4 @@
+#squish tool
+alias sqrun="squishrunner"
+alias sqruntc="squishrunner --testcase"
+alias sqrunts="squishrunner --testsuite"
