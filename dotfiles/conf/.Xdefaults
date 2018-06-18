@@ -1,0 +1,98 @@
+!-------------------------------------------------------------------------------
+!! Xft settings
+!!-------------------------------------------------------------------------------
+!
+Xft.dpi:                    96
+Xft.antialias:              false
+Xft.rgba:                   rgb
+Xft.hinting:                true
+Xft.hintstyle:              hintslight
+!
+!!-------------------------------------------------------------------------------
+!! URxvt settings
+!! Colours lifted from Solarized (http://ethanschoonover.com/solarized)
+!! More info at:
+!! http://pod.tst.eu/http://cvs.schmorp.de/rxvt-unicode/doc/rxvt.1.pod
+!!-------------------------------------------------------------------------------
+!
+URxvt.depth:                32
+URxvt.geometry:             90x30
+urxvt*background: rgba:0000/0000/0200/c800
+! URxvt.urgentOnBell:         true
+! URxvt.visualBell:           true
+URxvt.loginShell:           true
+URxvt.saveLines:            50
+URxvt.internalBorder:       3
+URxvt.lineSpace:            0
+!
+!! Fonts
+URxvt.allow_bold:           false
+!/* URxvt.font:                 -*-terminus-medium-r-normal-*-12-120-72-72-c-60-iso8859-1 */
+URxvt*font: xft:ProFont\ For\ Powerline:pixelsize=16:antialias=true
+URxvt*boldFont: xft:ProFont\ For\ Powerline:pixelsize=16:antialias=true
+!urxvt*font: xft:Terminus:pixelsize=12,xft:Inconsolata\ for\ Powerline:pixelsize=12
+!
+!! Fix font space
+URxvt*letterSpace: 0
+!
+!! Scrollbar
+URxvt.scrollStyle:          rxvt
+URxvt.scrollBar:            false
+!
+!! Perl extensions
+URxvt.perl-ext-common:      default,matcher
+URxvt.matcher.button:       1
+URxvt.urlLauncher:          firefox
+!
+!! Cursor
+URxvt.cursorBlink:          true
+URxvt.cursorColor:          #657b83
+URxvt.cursorUnderline:      false
+!
+!! Pointer
+!URxvt.pointerBlank:         true
+!
+URxvt.keysym.C-C: perl:clipboard:copy
+URxvt.keysym.C-V: perl:clipboard:paste
+URxvt.keysym.C-A-V: perl:clipboard:paste_escaped
+!!!Source http://github.com/altercation/solarized
+!
+*background: #000000
+*foreground: #FFFFFF
+!!!*fading: 40
+*fadeColor: #000000
+*cursorColor: #FFFFFF
+*pointerColorBackground: #586e75
+*pointerColorForeground: #93a1a1
+!
+!!! black dark/light
+*color0: #2E3436
+*color8: #555753
+!
+!!! red dark/light
+*color1: #CC0000
+*color9: #EF2929
+!
+!!! green dark/light
+*color2: #4E9A06
+*color10: #8AE234
+!
+!!! yellow dark/light
+*color3: #C4A000
+*color11: #FCE94F
+!
+!!! blue dark/light
+*color4: #3465A4
+*color12: #729FCF
+!
+!!! magenta dark/light
+*color5: #75507B
+*color13: #AD7FA8
+!
+!!! cyan dark/light
+*color6: #06989A
+*color14: #34E2E2
+!
+!!! white dark/light
+*color7: #D3D7CF
+*color15: #EEEEEC
