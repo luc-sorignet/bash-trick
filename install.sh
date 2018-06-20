@@ -1,18 +1,32 @@
 #!/bin/bash
-DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-DOTFILE_DIR=$DIR/dotfiles
-cp -r $DIR/shell-conf/. ~/.bash-trick
-cp $DOTFILE_DIR/bash/.bashrc ~/
+RCFILE=(".bashrc" ".zshrc")
+VAR=$(cat <<'EOF'
+        export BASHTRICK_DIR="$HOME/.bash-trick"
+        source $BASHTRICK_DIR/bt.sh
+        USR_BIN="$HOME/bin"
+        if [ -d $USR_BIN ]; then
+            export PATH="$PATH:$USR_BIN"
+        fi
+        export FPATH=$BASHTRICK_DIR/functions:$FPATH
+EOF
+)
 
 
-if [[ -x "$(command -v zsh)" ]]; then
-    cp $DOTFILE_DIR/zsh/.zshrc ~/.zshrc
-    if [[ -d ~/.oh-my-zsh ]]; then
-        cp $DOTFILE_DIR/zsh/lso.zsh-theme ~/.oh-my-zsh/themes/
+
+for F in "${RCFILE[@]}";
+do
+    FILE=$HOME/$F
+    echo "$FILE?"
+    if [ -f $FILE ]; then
+        if grep "$VAR" $FILE > /dev/null
+        then
+            echo "already install in $FILE"
+        else
+            echo "$VAR" >> $FILE
+            echo "setup in $FILE"
+        fi
     fi
-fi
+done
 
-cp -r $DOTFILE_DIR/conf/. ~/
-
-vim +PluginInstall +qall
-echo "install sucessfull you can restart your terminal !"
+source $HOME/.bash-trick/bt.sh
+reload_cnf
