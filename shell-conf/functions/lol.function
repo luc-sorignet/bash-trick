@@ -1,0 +1,44 @@
+function genban() {
+
+    FONT=$(_rFigFont)
+    if [ ! -z "$2" ]; then
+        FONT="$2"
+    fi
+    if [ ! -z "$1" ]; then
+        toilet -kf "$FONT" $1
+    else
+        return 1
+    fi
+}
+
+compdef _genban genban
+
+function _genban(){
+
+    #_message "f:"
+    _arguments "-f[font to use]:filename:->files" "--font[font to use]:filename:->files" "-r [with random font]" "--random[with random font]" "1:text"
+    case "$state" in
+    files)
+        _values /usr/share/figlet/*.flf
+        ;;
+    esac
+}
+
+function lolban(){
+    genban $1 $2 | lolcat
+}
+
+function _rFigFont(){
+
+    FONT_DIR="/usr/share/figlet"
+    FILE_TYPE="*.flf"
+    DIR="$FONT_DIR/$FILE_TYPE"
+    RAND=$( find "$FONT_DIR" -type f -a -name $FILE_TYPE | shuf -n 1 )
+    RAND=$(basename "$RAND" ".flf")
+    if [ ! -z "$RAND" ]; then
+        echo $RAND
+        return 0
+    else
+        return 1
+    fi
+}
