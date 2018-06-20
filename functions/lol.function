@@ -12,14 +12,13 @@ function genban() {
 }
 
 compdef _genban genban
-
 function _genban(){
-
+    DIR=/usr/share/figlet
     #_message "f:"
     _arguments "-f[font to use]:filename:->files" "--font[font to use]:filename:->files" "-r [with random font]" "--random[with random font]" "1:text"
     case "$state" in
     files)
-        _values /usr/share/figlet/*.flf
+        _values $DIR/*.flf
         ;;
     esac
 }

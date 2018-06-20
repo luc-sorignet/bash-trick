@@ -18,6 +18,7 @@ do
         echo "Options list:"
         echo "-v, --version                  show the version"
         echo "-h, --help                     print this help"
+        echo "-l, --list                     display all registered waypoint"
         echo "-a, --add    waypoint [path=.] associate the path with waypoint to the waypoint list"
         echo "-r, --remove waypoint          remove the waypoint to the waypoint list"
         echo "-c, --clean                    remove all the existing waypoint from the waypoint list"
@@ -95,5 +96,30 @@ tp -h
 return 1
 }
 
+function _list_tpkey()
+{ 
+    VAR=""
+    cat $WPFILE | while read key value; do
+            VAR="$VAR ${key}[$value]"
+    done
+    echo "$VAR"
+}
 
+compdef _tp tp
+function _tp(){
 
+ _arguments "-v[show the version]" "--version[show the version]" \
+            "-h[print help]" "--help[print help]" \
+            "-c[remove all the existing waypoint from the waypoint list]" "--clean[remove all the existing waypoint from the waypoint list]" \
+            "-l[display all registered waypoint]" "--list[display all registered waypoint]" \
+            "-a[associate the path with waypoint to the waypoint list]:filename:->add" "--add[associate the path with waypoint to the waypoint list]:filename:->add" \
+            "-r[remove the waypoint to the waypoint list]:filename:->remove" "--remove[remove the waypoint to the waypoint list]:filename:->remove" ":arg:->waypoint"
+case "$state" in
+    remove|waypoint)
+        _values "waypoint path" $( _list_tpkey )
+    ;;
+    add)
+        _describe " waypoint [OPTIONAL_PATH = (current bash dir by default)]"
+    ;;
+esac
+}
