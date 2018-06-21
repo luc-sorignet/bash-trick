@@ -92,7 +92,7 @@ do
 ;;
 esac
 done
-tp -h
+`$0 -h`
 return 1
 }
 

@@ -1,11 +1,12 @@
-export DEV_DIR="$HOME/Documents/dev/"
+#!/bin/bash
+export DEV_DIR="$HOME/Documents/dev"
 if [ ! -d $DEV_DIR ]; then
     mkdir -p $DEV_DIR
 fi
 function cdp (){
   PROJECT=$DEV_DIR
   if [ ! -z "$1" ]; then
-    PROJECT=$PROJECT$1
+    PROJECT=$PROJECT/$1
   fi
   if [ -d $PROJECT ]; then
      cd $PROJECT
@@ -16,3 +17,14 @@ function cdp (){
   return 0
 }
 
+compdef _cdp cdp
+
+function _cdp() {
+_arguments ":arg:->directory"
+case "$state" in
+    directory)
+        _path_files -W $DEV_DIR -/	
+    ;;
+esac
+
+}

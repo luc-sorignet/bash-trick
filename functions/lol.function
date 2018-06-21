@@ -1,43 +1,91 @@
-function genban() {
+#!/bin/bash
 
-    FONT=$(_rFigFont)
-    if [ ! -z "$2" ]; then
-        FONT="$2"
-    fi
-    if [ ! -z "$1" ]; then
-        toilet -kf "$FONT" $1
-    else
-        return 1
-    fi
+function lolban() {
+
+VERSION="1.0.0.0"
+FONT_DIR="/usr/share/figlet"
+FILE_TYPE="*.flf"
+FONT="3d"
+TEXT=""
+LOLCAT=0
+while [[ $# -gt 0 ]]
+do
+    key="$1"
+    case $key in
+        -v|--version)
+            echo "$0 - $VERSION"
+            shift
+            return 0
+    ;;
+    -h|--help)
+	     #print help
+        echo "USAGE : $0 [OPTIONS...] [text] generate ASCII art banner"
+        echo "Options list:"
+        echo "-v, --version                  show the version"
+        echo "-h, --help                     print this help"
+        echo "-l, --lolcat                   active lolcat random colouring"
+        echo "-f, --font    [font]           select a font to use for generate ASCII banner"
+        echo "-r, --random                   randomize font"
+        shift
+        return 0
+    ;;
+     
+     -f|--font)
+        shift
+        FONT=$1
+        shift
+     ;;
+     
+     -r|--random)
+        RAND=$( find "$FONT_DIR" -type f -a -name $FILE_TYPE | shuf -n 1 )
+        FONT=$(basename "$RAND" ".flf")
+        shift
+     ;;
+     
+     -l|--lolcat)
+        LOLCAT=1
+        shift
+     ;;    
+     *)
+        TEXT="$1"
+        COMMAND="toilet -f \"$FONT\" \"$TEXT\""
+        if [ $LOLCAT -eq 1 ] ; then
+            COMMAND="$COMMAND | lolcat"
+        fi
+        eval $COMMAND
+        shift
+        return 0
+     ;;
+   esac
+done
+$0 -h
+return 1
 }
 
-compdef _genban genban
-function _genban(){
-    DIR=/usr/share/figlet
+compdef _lolban lolban
+function _lolban(){
+   FONT_DIR="/usr/share/figlet"
+    FILE_TYPE="*.flf"
+    DIR="$FONT_DIR/$FILE_TYPE"
     #_message "f:"
-    _arguments "-f[font to use]:filename:->files" "--font[font to use]:filename:->files" "-r [with random font]" "--random[with random font]" "1:text"
+    _arguments "-h[print help]" "--help[print help]" \
+               "-v[show the version]" "--version[show the version]" \
+               "-l[active lolcat random colouring]" "--lolcat[active lolcat random colouring]" \
+               "-r[randomize font]" "--random[randomize font]" \
+    "-f[select a font to use for generate ASCII banner]:filename:->fonts" "--font[select a font to use for generate ASCII banner]:filename:->fonts" ":arg:->text"
     case "$state" in
-    files)
-        _values $DIR/*.flf
+    fonts)
+    declare -a fonts
+    find "$FONT_DIR" -type f -a -name $FILE_TYPE | while read file; do
+        F=$(basename "$file" ".flf")
+        #F=$(echo "$F" | sed 's/ /\\ /g') 
+        fonts+=("${F}")
+    done
+        
+        _values "fonts" $fonts
+        ;;
+    text)
         ;;
     esac
 }
 
-function lolban(){
-    genban $1 $2 | lolcat
-}
-
-function _rFigFont(){
-
-    FONT_DIR="/usr/share/figlet"
-    FILE_TYPE="*.flf"
-    DIR="$FONT_DIR/$FILE_TYPE"
-    RAND=$( find "$FONT_DIR" -type f -a -name $FILE_TYPE | shuf -n 1 )
-    RAND=$(basename "$RAND" ".flf")
-    if [ ! -z "$RAND" ]; then
-        echo $RAND
-        return 0
-    else
-        return 1
-    fi
-}
