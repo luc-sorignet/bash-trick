@@ -1,0 +1,13 @@
+
+function rl_zshrc(){
+    source $HOME/.zshrc
+}
+
+function rl_bashrc(){
+    source $HOME/.bashrc
+}
+
+function set_zsh_theme(){
+    sed -i.bak s/ZSH_THEME=".*"/ZSH_THEME=\"$1\"/g $HOME/.zshrc
+    rl_zshrc
+}
