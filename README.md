@@ -47,20 +47,6 @@
 `sqrun` : squishrunner
 `sqruntc` : squishrunner --testcase
 
-
-
-## Git Alias
-
-`undo` : git reset --soft HEAD^
-
-`amend` : commit --amend
-
-`changes` : diff --name-status
-
-`dic` : diff --cached
-
-`diffstat` : diff --stat
-
-`oneline` : log --pretty=oneline --abbrev-commit --graph --decorate
-
-`checkb` : checkout -b
+## Custom Functions
+`cdp` : cd Project (default $DEV_DIR=~/Documents/dev) you can redefine the dir with export DEV_DIR=your/custom/dir on .bashrc or .zshrc after the bash-trick install
+`tp` : teleport on the registered waypoint exemple: `tp waypoint` or if you want to go on a subdir from waypoint `tp waypoint PATH_FROM_WAYPOINT/SUBDIR/SUBSUBDIR`
