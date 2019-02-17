@@ -1,18 +1,24 @@
 #!/bin/bash
+export BASHTRICK_DIR="$HOME/.bash-trick"
+
+source $BASHTRICK_DIR/bash-trick.sh
+
 RCFILE=(".bashrc" ".zshrc")
-VAR=$(cat <<'EOF'
-        export BASHTRICK_DIR="$HOME/.bash-trick"
-        source $BASHTRICK_DIR/bt.sh
-        USR_BIN="$HOME/bin"
-        if [ -d $USR_BIN ]; then
-            export PATH="$PATH:$USR_BIN"
-        fi
-        export FPATH=$BASHTRICK_DIR/functions:$FPATH
+
+VAR=$(cat <<- EOF
+# BASHTRICK >>
+    export BASHTRICK_DIR="$HOME/.bash-trick"
+    source $BASHTRICK_DIR/bash-trick.sh
+    USR_BIN="$HOME/bin"
+    if [ -d $USR_BIN ]; then
+        export PATH="$PATH:$USR_BIN"
+    fi
+    export FPATH=$BASHTRICK_DIR/functions:$FPATH
+# << BASHTRICK
 EOF
 )
 
-
-
+echo "setup bash-trick in .bashrc .zshrc files"
 for F in "${RCFILE[@]}";
 do
     FILE=$HOME/$F
@@ -27,6 +33,4 @@ do
         fi
     fi
 done
-
-source $HOME/.bash-trick/bt.sh
 reload_cnf
