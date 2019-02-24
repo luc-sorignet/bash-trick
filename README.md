@@ -1,24 +1,30 @@
-# BASH TRICKS :lemon: 
+
+      ▀█████████▄     ▄████████    ▄████████    ▄█    █▄        ███        ▄████████  ▄█   ▄████████    ▄█   ▄█▄
+        ███    ███   ███    ███   ███    ███   ███    ███   ▀█████████▄   ███    ███ ███  ███    ███   ███ ▄███▀
+        ███    ███   ███    ███   ███    █▀    ███    ███      ▀███▀▀██   ███    ███ ███▌ ███    █▀    ███▐██▀
+       ▄███▄▄▄██▀    ███    ███   ███         ▄███▄▄▄▄███▄▄     ███   ▀  ▄███▄▄▄▄██▀ ███▌ ███         ▄█████▀
+      ▀▀███▀▀▀██▄  ▀███████████ ▀███████████ ▀▀███▀▀▀▀███▀      ███     ▀▀███▀▀▀▀▀   ███▌ ███        ▀▀█████▄
+        ███    ██▄   ███    ███          ███   ███    ███       ███     ▀███████████ ███  ███    █▄    ███▐██▄
+        ███    ███   ███    ███    ▄█    ███   ███    ███       ███       ███    ███ ███  ███    ███   ███ ▀███▄
+      ▄█████████▀    ███    █▀   ▄████████▀    ███    █▀       ▄████▀     ███    ███ █▀   ████████▀    ███   ▀█▀
+                                                                          ███    ███                   ▀
+
 **Installation**
-`git clone https://github.com/luc-sorignet/bash-trick.git ~/.bash-trick; cd ~/.bash-trick ; ./install.sh ; cd ..`
 
-**Bash Navigation**
+    git clone https://github.com/luc-sorignet/bash-trick.git ~/.bash-trick
+    cd ~/.bash-trick
+    ./install.sh
+    cd ..
 
-`ctrl + a`: Go to the begin of the prompt
+**Architecture**
 
-`ctrl + e`: Go to the end of the prompt
+- config/ the configuration dir with bash config file *.config
+- aliases/ the aliase dir
+- functions/ the bash-trick function dir with .functions (use the zsh autocomplete)
 
-`ctrl + ->`: Move to the end of the next word
+You can create your own function, alias, conf. Just add a .custom.function, .custom.alias or .custom.conf file in the correspondant dir.
+and reload the conf with reload_cnf command.
 
-`ctrl + <-`: Move to the beginning of the previous word
-
-**Bash History**
-
- &uarr; : previous command in history
-
- &darr; : next command  in history
-
-`ctrl + r`: search in history
 
 **Bash alias**
 
@@ -30,23 +36,26 @@
 - `bashrc`: edit the bashrc file and reload it
 
 
+**Qibuild Shortcut**
 
-## Qibuild Shortcut
+- `qib` : qibuild
+- `qibc` : qibuild configure
+- `qibm` : qibuild make
+- `qibi` : qibuild install
+- `qitc` : qitoolchain
+- `qitcc` : qitoolchain create
 
-`qib` : qibuild
-`qibc` : qibuild configure
-`qibm` : qibuild make
-`qibi` : qibuild install
-`qitc` : qitoolchain
-`qitcc` : qitoolchain create
+**Squish Shortcut**
 
-
-
-## Squish Shortcut
-
-`sqrun` : squishrunner
-`sqruntc` : squishrunner --testcase
+- `sqrun` : squishrunner
+- `sqruntc` : squishrunner --testcase
 
 ## Custom Functions
-`cdp` : cd Project (default $DEV_DIR=~/Documents/dev) you can redefine the dir with export DEV_DIR=your/custom/dir on .bashrc or .zshrc after the bash-trick install
-`tp` : teleport on the registered waypoint exemple: `tp waypoint` or if you want to go on a subdir from waypoint `tp waypoint PATH_FROM_WAYPOINT/SUBDIR/SUBSUBDIR`
+
+`cdp` : cd project (default $DEV_DIR=~/Documents/dev)
+
+you can redefine the dir with `export DEV_DIR=your/custom/dir` on **.bashrc** or **.zshrc** after the bash-trick install
+
+`tp` : teleport on the registered waypoint
+
+ exemple: `tp waypoint` or if you want to go on a subdir from waypoint `tp waypoint PATH_FROM_WAYPOINT/SUBDIR/SUBSUBDIR`
