@@ -25,13 +25,10 @@ do
     FILE=$HOME/$F
     echo "$FILE?"
     if [ -f $FILE ]; then
-        if grep "$VAR" $FILE > /dev/null
-        then
-            echo "already install in $FILE"
-        else
-            echo "$VAR" >> $FILE
-            echo "setup in $FILE"
-        fi
+        sed -i .bak "/# BASHTRICK >>/,/# << BASHTRICK/d" $FILE
+        echo "$VAR" >> $FILE
+        echo "setup in $FILE"
+        rm $FILE.bak
     fi
 done
 reload_cnf
