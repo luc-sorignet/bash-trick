@@ -76,28 +76,33 @@ do
     return 0
 ;;
 *)
-    WAYDIR=$( _get_dir_from_waypoint $1 )
-    if [  $WAYDIR != "" ]; then
-        if [[ $2 != "" ]];then
-            cd $WAYDIR/$2
-        else
-            cd $WAYDIR
+    if [ -n "$1" ]; then
+        WAYDIR=$( _get_dir_from_waypoint $1 )
+        if [ -n "$WAYDIR" ]; then
+            if [ -n "$2" ]; then
+                cd $WAYDIR/$2
+            else
+                cd $WAYDIR
+            fi
+            return 0
         fi
-        return 0
+        echo "$0 should have a registered waypoint $1 try to add it with:"
+        echo "$0 --add $1"
+    else
+        echo "$0 should have a registered waypoint try to add it with:"
+        echo "$0 --add <waypoint>"
     fi
-    echo "$0 should have a registered waypoint $1 try to add it with:"
-    echo "$0 --add $1"
-    return 0
+    return 1
 ;;
 esac
 done
-`$0 -h`
+eval "$0 -h"
 return 1
 }
 
 function _list_tpkey()
 { 
-    if [[ ! -e $WPFILE ]]; then
+    if [ ! -e $WPFILE ]; then
         touch $WPFILE
     fi
     VAR=""
@@ -109,7 +114,7 @@ function _list_tpkey()
 
 function _get_dir_from_waypoint() 
 {
-    if [[ ! -e $WPFILE ]]; then
+    if [ ! -e $WPFILE ]; then
         touch $WPFILE
     fi
     if [ -f $WPFILE ]; then
@@ -137,7 +142,7 @@ function _tp(){
 case "$state" in
     remove| waypoint)
         LIST=$( _list_tpkey );
-        if [[ $LIST != "" ]]; then
+        if [ -n "$LIST" ]; then
             _values "waypoint path" $( _list_tpkey )
         fi
     ;;
